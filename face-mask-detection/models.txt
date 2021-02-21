@@ -1,0 +1,10 @@
+pretrained: 	/model/pretrained/resnet18.hdf5
+train:		/model/train/
+prune:		/model/pruned.tlt
+retrain:	/model/retrain/
+etlt:           /model/final.etlt
+engine:         /model/final.engine
+trt:            /model/final.trl
+int8		/model/final_int8.engine
+
+

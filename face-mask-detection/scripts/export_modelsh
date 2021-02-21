@@ -1,0 +1,37 @@
+#!/bin/bash
+
+tlt-export detectnet_v2 -m /model/retrain/weights/resnet18_detector.tlt \
+                        -o /model/final.etlt \
+			-k ${KEY}
+
+tlt-converter /model/final.etlt \
+              -o output_cov/Sigmoid, output_bbox/BiasAdd \
+	      -d 3, 544, 960 \
+	      -i nchw \
+	      -t fp32 \
+	      -e /model/final.engine \
+              -k ${KEY}
+
+tlt-converter /model/final.etlt \
+              -o output_cov/Sigmoid, output_bbox/BiasAdd \
+              -d 3, 544, 960 \
+              -i nchw \
+              -t fp32 \
+              -e /model/final.trt \
+              -k ${KEY}
+
+tlt-int8-tersorfile detectnet_v2 -e ../tlt_specs/detectnet_v2_retrain_resnet18_kitti.txt \
+	                         -m 40 \
+				 -o /model/int8_calibration.tensor
+
+tlt-converter /model/final.etlt \
+	      -c /model/int8_calibration.bin \
+              -o output_cov/Sigmoid, output_bbox/BiasAdd \
+              -d 3, 544, 960 \
+              -i nchw \
+	      -m 64 \
+              -t int8 \
+              -e /model/final_int8.engine \
+	      -b 4 \
+              -k ${KEY}
+
