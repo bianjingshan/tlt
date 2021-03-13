@@ -1,0 +1,6 @@
+#!/bin/bash
+
+tlt-int8-tensorfile detectnet_v2 -e ../tlt_specs/detectnet_v2_retrain_resnet18_kitti.txt \
+	                         -m 40 \
+				 -o /model/int8_calibration.tensor
+

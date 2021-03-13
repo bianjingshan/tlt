@@ -5,6 +5,9 @@ retrain:	/model/retrain/
 etlt:           /model/final.etlt
 engine:         /model/final.engine
 trt:            /model/final.trl
-int8		/model/final_int8.engine
+int8 tensor:    /model/int8_calibration.tensor
+int8 etlt:      /model/final_int8.etlt
+int8 engine:    /model/final_int8.engine
+int8 trt:       /model/final_int8.trt
 
 
