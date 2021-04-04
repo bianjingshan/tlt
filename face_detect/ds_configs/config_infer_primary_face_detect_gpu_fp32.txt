@@ -9,21 +9,20 @@
 [property]
 gpu-id=0
 net-scale-factor=0.0039215697906911373
-tlt-model-key=bXA5bGN1cTg1bHZscjRnZzFncDA3bjhxbzE6MGY4ZjU2N2EtOTA2MS00NmU3LTgxMzMtZDA4MGRmM2I4YmE1
-#tlt-encoded-model=/tlt-demo/data/experiment_dir_final/resnet18_detector_int8.etlt
-labelfile-path=labels_masknet.txt
+tlt-model-key=nvidia_tlt
+# tlt-encoded-model=/model/pretrained/face_detect/model.etlt
+labelfile-path=labels.txt
 # GPU Engine File
-model-engine-file=/model/final_int8.engine
+model-engine-file=/model/pretrained/face_detect/model.engine
 # DLA Engine File
-# model-engine-file=/tlt-demo/data/experiment_dir_final/resnet18_detector_int8.engine
-input-dims=3;544;960;0
+input-dims=3;416;736;0
 uff-input-blob-name=input_1
 batch-size=4
 model-color-format=0
 ## 0=FP32, 1=INT8, 2=FP16 mode
-network-mode=1
-int8-calib-file=/model/int8_calibration.bin
-num-detected-classes=2
+network-mode=0
+#int8-calib-file=/tlt-demo/data/experiment_dir_final/calibration.bin
+num-detected-classes=1
 cluster-mode=3
 interval=0
 gie-unique-id=1
@@ -42,13 +41,13 @@ detected-max-w=0
 detected-max-h=0
 
 
-[class-attrs-1]
-pre-cluster-threshold=0.3
-group-threshold=1
-eps=0.3
+#[class-attrs-1]
+#pre-cluster-threshold=0.3
+#group-threshold=1
+#eps=0.3
 #minBoxes=1
-detected-min-w=0
-detected-min-h=0
-detected-max-w=0
-detected-max-h=0
+#detected-min-w=0
+#detected-min-h=0
+#detected-max-w=0
+#detected-max-h=0
 
